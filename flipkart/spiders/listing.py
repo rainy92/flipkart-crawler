@@ -29,7 +29,17 @@ class ListingSpider(scrapy.Spider):
 		list_item['mrp'] = extra_data.xpath(".//div[@class='_3auQ3N']/text()").extract_first()
 		list_item['offer'] = extra_data.xpath(".//div[@class='VGWI6T']/span/text()").extract_first()
 
-		next_page = container.xpath(".//a[@class='_3fVaIS']/@href")
+		crawled_urls = []
+
+		next_page = container.xpath(".//a[@class='_3fVaIS']/@href").extract()[-1]
+
+		yield {
+			'next_page': next_page,
+		}
+
+		if not next_page in crawled_urls:
+			crawled_urls.append(next_page)
+			yield scrapy.Request('https://www.flipkart.com{}'.format(next_page), callback=self.parse)
 		# yield  pagination on hold
 
-		yield list_item
+		# yield list_item
