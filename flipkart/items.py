@@ -24,6 +24,8 @@ class PdpItem(scrapy.Item):
 	price = scrapy.Field()
 	mrp = scrapy.Field()
 	offer = scrapy.Field()
+	bank_offers = scrapy.Field()
+	services = scrapy.Field()
 	available_sizes = scrapy.Field()
 	available_sizes_url = scrapy.Field()
 	seller_name = scrapy.Field()

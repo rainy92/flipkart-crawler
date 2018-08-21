@@ -21,6 +21,8 @@ class PdpSpider(scrapy.Spider):
 		pdp_item['price'] = header.xpath(".//div[@class='_3iZgFn']//div[contains(@class, '_1vC4OE _3qQ9m1')]/text()").extract_first()
 		pdp_item['mrp'] = header.xpath(".//div[@class='_3iZgFn']//div[contains(@class, '_3auQ3N _1POkHg')]/text()").extract()
 		pdp_item['offer'] = header.xpath(".//div[@class='_3iZgFn']//div[contains(@class, 'VGWI6T _1iCvwn')]/span/text()").extract_first()
+		pdp_item['bank_offers'] = container.xpath(".//div[@class='_3D89xM']//span[contains(@class, '_7g_MLT')]//li/span[2]/text()").extract()
+		pdp_item['services'] = container.xpath(".//div[contains(@class, '_3aj0Jp flex')]//div[@class='_20PGcF']/text()").extract()
 		pdp_item['available_sizes'] = container.xpath(".//div[@class='rPoo01']//ul[@class='eaKBCI']/li[contains(@id, 'swatch-')]/a/text()").extract()
 		pdp_item['available_sizes_url'] = container.xpath(".//div[@class='rPoo01']//ul[@class='eaKBCI']/li[contains(@id, 'swatch-')]/a/@href").extract()
 		pdp_item['seller_name'] = container.xpath(".//div[@id='sellerName']/span/span/text()").extract_first()
